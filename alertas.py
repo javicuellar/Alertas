@@ -11,7 +11,8 @@ else:
 
 from Herramientas.variables import Variables
 from alerta_MD import Alerta_MD
-from alerta_ficheros import Alerta_Ficheros
+# from alerta_ficheros import Alerta_Ficheros       # Genera fichero excel
+from alerta_ficheros_sheet import Alerta_Ficheros   # Actualiza hoja de cálculo
 
 
 
