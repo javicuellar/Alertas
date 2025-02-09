@@ -5,19 +5,13 @@ URL_MD = "https://www.comunidad.madrid/servicios/empleo/procesos-selectivos-agen
 #
 #  Se recupera la tabla de puestos que hay en la web.
 
-import os, sys
-
-# Para Windows añadimos path a librerías python, para añadir librerías mías de Herramientas
-if os.name == 'nt':
-    sys.path.append(os.path.join(os.path.dirname(__file__), '\\Python'))
-
 from Herramientas.scraping import Recuperar_tablas
 from Herramientas.mail import Envio_mail
 
 
 
 
-def Alerta_MD(variables): 
+def Alerta_MD(usuario, password, destinatario): 
     #  Recuperamos la tabla con los puestos
     tablas = Recuperar_tablas(URL_MD)
 
@@ -30,20 +24,17 @@ def Alerta_MD(variables):
         print('No se encontrado puestos en Madrid Digital')
         alerta = 'Puestos Madrid Digital - NO HAY NINGUNO'
         mensaje = f"{puestos.iloc[0,1]}\nVisita la pagina web\n{URL_MD}"
-        Envio_mail(variables.usuario, variables.password , alerta, mensaje, variables.destinatario)
+        Envio_mail(usuario, password , alerta, mensaje, destinatario)
     else:
         alerta = 'ALERTA - Han salido puestos en Madrid Digital'
         mensaje = f"Han salido los siguientes puestos en Madrid Digital.\n\n{puestos.to_string(index=False)}\n\n Visita la pagina web\n{URL_MD}"
         print(alerta)
-        Envio_mail(variables.usuario, variables.password , alerta, mensaje, variables.destinatario)
+        Envio_mail(usuario, password , alerta, mensaje, destinatario)
 
 
 
 
 if __name__ == '__main__':
-    from Herramientas.variables import Variables
+    from Herramientas.variables import USUARIO, PASSWORD, DESTINATARIO
     
-    var = Variables() 
-    
-    #  Alerta puestos en Madrid Digital
-    Alerta_MD(var)
+    Alerta_MD(USUARIO, PASSWORD, DESTINATARIO)
