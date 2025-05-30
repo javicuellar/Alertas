@@ -1,9 +1,8 @@
-from Herramientas.variables import USUARIO, PASSWORD, USUARIO_JAVI, PASSWORD_JAVI
+from Herramientas.variables import USUARIO, PASSWORD, USUARIO_JAVI, PASSWORD_JAVI, DESTINATARIO
 from alerta_CONTROL import Alerta_CONTROL
 from alerta_MD import Alerta_MD
 # from alerta_ficheros import Alerta_Ficheros               # Genera fichero excel
 from alerta_ficheros_sheet import Alerta_Ficheros_sheet     # Actualiza hoja de cálculo
-from alerta_esqui import Alerta_viaje_esqui
 
 
 
@@ -11,7 +10,7 @@ from alerta_esqui import Alerta_viaje_esqui
 #     Analizamos las alertas:
 
 #  Alerta CONTROL ACCESO, si no borro los correos de CONTROL ACCESO se activa la alerta
-Alerta_CONTROL(USUARIO, PASSWORD, USUARIO_JAVI, PASSWORD_JAVI)
+Alerta_CONTROL(USUARIO, PASSWORD, USUARIO_JAVI, PASSWORD_JAVI, DESTINATARIO)
 
 #  Alerta puestos en Madrid Digital
 Alerta_MD(USUARIO, PASSWORD, USUARIO_JAVI)
@@ -30,4 +29,8 @@ else:
 
 Alerta_Ficheros_sheet(DIRECTORIO, T_MINIMO)
 
-Alerta_viaje_esqui(["viaje esqui ayuntamiento", "viaje esqui ayuntamiento 2025"])
+
+if os.name == 'nt':
+    from alerta_esqui import Alerta_viaje_esqui
+
+    Alerta_viaje_esqui(["viaje esqui ayuntamiento", "viaje esqui ayuntamiento 2025"])
