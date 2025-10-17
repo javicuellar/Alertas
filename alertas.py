@@ -33,4 +33,4 @@ Alerta_Ficheros_sheet(DIRECTORIO, T_MINIMO)
 if os.name == 'nt':
     from alerta_esqui import Alerta_viaje_esqui
 
-    Alerta_viaje_esqui(["viaje esqui ayuntamiento", "viaje esqui ayuntamiento 2025"])
+    Alerta_viaje_esqui(["viaje esqui ayuntamiento", "viaje esqui ayuntamiento 2026"])
