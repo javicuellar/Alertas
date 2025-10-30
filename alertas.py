@@ -1,4 +1,7 @@
-from Herramientas.variables import USUARIO, PASSWORD, USUARIO_JAVI, PASSWORD_JAVI, DESTINATARIO
+# Librerias comunes
+from Herramientas.variables import leer_variables
+config = leer_variables()
+
 from alerta_CONTROL import Alerta_CONTROL
 from alerta_MD import Alerta_MD
 # from alerta_ficheros import Alerta_Ficheros               # Genera fichero excel
@@ -7,13 +10,14 @@ from alerta_ficheros_sheet import Alerta_Ficheros_sheet     # Actualiza hoja de 
 
 
 
+
 #     Analizamos las alertas:
 
 #  Alerta CONTROL ACCESO, si no borro los correos de CONTROL ACCESO se activa la alerta
-Alerta_CONTROL(USUARIO, PASSWORD, USUARIO_JAVI, PASSWORD_JAVI, DESTINATARIO)
+Alerta_CONTROL(config['USER_MAIL'], config['PASSWORD_MAIL'], config['USER_JAVI'], config['PASSWORD_JAVI'], config['DESTINATARIO_MAIL'])
 
 #  Alerta puestos en Madrid Digital
-Alerta_MD(USUARIO, PASSWORD, USUARIO_JAVI)
+Alerta_MD(config['USER_MAIL'], config['PASSWORD_MAIL'], config['USER_JAVI'])
 
 
 #  Analizamos ficheros en DIRECTORIO mayores de T_MINIMO 
